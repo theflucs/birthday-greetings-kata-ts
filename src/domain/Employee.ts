@@ -1,11 +1,11 @@
-import { Birthdate } from "./Birthdate";
+import { BirthDate } from "./BirthDate";
 import { EmailAddress } from "./EmailAddress";
 import { FullName } from "./FullName";
 
 export class Employee {
   constructor(
     private readonly fullName: FullName,
-    private readonly birthDate: Birthdate,
+    private readonly birthDate: BirthDate,
     private readonly email: EmailAddress
   ) {}
 
@@ -17,7 +17,7 @@ export class Employee {
     return this.email;
   }
 
-  getBirthdate(): Birthdate {
-    return this.birthDate;
+  hasBirthdayOn(date: BirthDate): boolean {
+    return this.birthDate.isSameDay(date);
   }
 }

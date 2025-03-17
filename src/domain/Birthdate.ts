@@ -1,15 +1,14 @@
-export class Birthdate {
+export class BirthDate {
   private readonly date: Date;
 
-  constructor(dateString: string) {
-    const [yyyy, mm, dd] = dateString.split("/").map(Number);
-    this.date = new Date(yyyy, mm - 1, dd);
+  constructor(yyyyMMdd: string) {
+    this.date = new Date(yyyyMMdd);
   }
 
-  isSameDay(today: Date): boolean {
+  isSameDay(otherDate: BirthDate): boolean {
     return (
-      this.date.getMonth() === today.getMonth() &&
-      this.date.getDate() === today.getDate()
+      this.date.getMonth() === otherDate.date.getMonth() &&
+      this.date.getDate() === otherDate.date.getDate()
     );
   }
 }
