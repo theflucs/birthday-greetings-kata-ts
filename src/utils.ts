@@ -31,14 +31,12 @@ export function sendBirthdayEmail(
   emailService: EmailService
 ): void {
   const email = employee.getEmailAddress();
+  const subject = "Happy birthday!";
+  const body = `Happy birthday, dear ${employee.getFirstName()}!`;
 
   if (!email.isValid()) return;
 
-  emailService.send(
-    email,
-    "Happy Birthday!",
-    `Happy birthday, dear ${employee.getFirstName()}!`
-  );
+  emailService.send(email, subject, body);
 }
 
 export function logInvalidEmail(employee: Employee): void {
