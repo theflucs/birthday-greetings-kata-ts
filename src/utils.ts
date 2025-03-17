@@ -11,7 +11,10 @@ export function csvParser(csvData: string): Employee[] {
     .split("\n")
     .slice(1) // skip the header
     .map((line) => {
-      const [lastName, firstName, birthDate, email] = line.split(", ");
+      const [lastName, firstName, birthDate, email] = line
+        .split(",")
+        .map((s) => s.trim());
+
       return new Employee(
         new Name(lastName, firstName),
         new BirthDate(birthDate),
