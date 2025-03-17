@@ -1,7 +1,7 @@
 import { CsvEmployeeProvider } from "../../providers/CsvEmployeeProvider";
 import { parseCsvToEmployees } from "../../utils";
 
-jest.mock("../utils", () => ({
+jest.mock("../../utils", () => ({
   parseCsvToEmployees: jest.fn(),
 }));
 
