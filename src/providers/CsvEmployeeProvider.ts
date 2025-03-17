@@ -1,5 +1,5 @@
 import { EmployeeProvider } from "./EmployeeProvider";
-import { parseCsvToEmployees } from "../utils";
+import { csvParser } from "../utils";
 
 export class CsvEmployeeProvider implements EmployeeProvider {
   constructor(
@@ -9,6 +9,6 @@ export class CsvEmployeeProvider implements EmployeeProvider {
 
   async fetchEmployees() {
     const data = await this.fileReader(this.filePath);
-    return parseCsvToEmployees(data);
+    return csvParser(data);
   }
 }

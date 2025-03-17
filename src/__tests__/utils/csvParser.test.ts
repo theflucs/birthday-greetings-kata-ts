@@ -1,14 +1,14 @@
-import { Employee } from "../../domain/Employee";
 import { BirthDate } from "../../domain/BirthDate";
-import { parseCsvToEmployees } from "../../utils";
+import { Employee } from "../../domain/Employee";
+import { csvParser } from "../../utils";
 
-describe("parseCsvToEmployees", () => {
+describe("csvParser", () => {
   it("should correctly parse a valid CSV string", () => {
     const csvData = `last_name, first_name, date_of_birth, email
 Doe, John, 1982/10/08, john.doe@example.com
 Ann, Mary, 1975/09/11, mary.ann@example.com`;
 
-    const employees: Employee[] = parseCsvToEmployees(csvData);
+    const employees: Employee[] = csvParser(csvData);
 
     expect(employees).toHaveLength(2);
 
@@ -25,7 +25,7 @@ Ann, Mary, 1975/09/11, mary.ann@example.com`;
 
   it("should return an empty array for an empty CSV string", () => {
     const csvData = "last_name, first_name, date_of_birth, email";
-    const employees: Employee[] = parseCsvToEmployees(csvData);
+    const employees: Employee[] = csvParser(csvData);
     expect(employees).toHaveLength(0);
   });
 });

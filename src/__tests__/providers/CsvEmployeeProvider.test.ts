@@ -1,8 +1,8 @@
 import { CsvEmployeeProvider } from "../../providers/CsvEmployeeProvider";
-import { parseCsvToEmployees } from "../../utils";
+import { csvParser } from "../../utils";
 
 jest.mock("../../utils", () => ({
-  parseCsvToEmployees: jest.fn(),
+  csvParser: jest.fn(),
 }));
 
 describe("CsvEmployeeProvider", () => {
@@ -19,13 +19,13 @@ describe("CsvEmployeeProvider", () => {
       { getName: () => "John" },
       { getName: () => "Mary" },
     ];
-    (parseCsvToEmployees as jest.Mock).mockReturnValue(mockEmployees);
+    (csvParser as jest.Mock).mockReturnValue(mockEmployees);
 
     const provider = new CsvEmployeeProvider(mockFileReader, "employees.csv");
     const employees = await provider.fetchEmployees();
 
     expect(mockFileReader).toHaveBeenCalledWith("employees.csv");
-    expect(parseCsvToEmployees).toHaveBeenCalledWith("mocked csv content");
+    expect(csvParser).toHaveBeenCalledWith("mocked csv content");
     expect(employees).toEqual(mockEmployees);
   });
 
@@ -33,7 +33,7 @@ describe("CsvEmployeeProvider", () => {
     mockFileReader.mockResolvedValue(
       "last_name, first_name, date_of_birth, email"
     );
-    (parseCsvToEmployees as jest.Mock).mockReturnValue([]);
+    (csvParser as jest.Mock).mockReturnValue([]);
 
     const provider = new CsvEmployeeProvider(mockFileReader, "employees.csv");
     const employees = await provider.fetchEmployees();

@@ -5,7 +5,7 @@ import { EmailService } from "./services/EmailService";
 import { BirthDate } from "./domain/BirthDate";
 import { BIRTHDAY_EMAIL_SUBJECT } from "./constants";
 
-export function parseCsvToEmployees(csvData: string): Employee[] {
+export function csvParser(csvData: string): Employee[] {
   return csvData
     .trim()
     .split("\n")
