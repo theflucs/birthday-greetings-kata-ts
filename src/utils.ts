@@ -3,6 +3,7 @@ import { EmailAddress } from "./domain/EmailAddress";
 import { Name } from "./domain/Name";
 import { EmailService } from "./services/EmailService";
 import { BirthDate } from "./domain/BirthDate";
+import { BIRTHDAY_EMAIL_SUBJECT } from "./constants";
 
 export function parseCsvToEmployees(csvData: string): Employee[] {
   return csvData
@@ -31,8 +32,8 @@ export function sendBirthdayEmail(
   emailService: EmailService
 ): void {
   const email = employee.getEmailAddress();
-  const subject = "Happy birthday!";
-  const body = `Happy birthday, dear ${employee.getFirstName()}!`;
+  const subject = BIRTHDAY_EMAIL_SUBJECT;
+  const body = generateEmailBody(employee.getFirstName());
 
   if (!email.isValid()) return;
 
@@ -45,4 +46,7 @@ export function logInvalidEmail(employee: Employee): void {
   console.warn(
     `Skipping email for ${employee.getFullName()} - Invalid email: ${email.value()}`
   );
+}
+export function generateEmailBody(recipientName: string): string {
+  return `Happy birthday, dear ${recipientName}!`;
 }

@@ -1,9 +1,10 @@
+import { BIRTHDAY_EMAIL_SUBJECT } from "../../constants";
 import { BirthDate } from "../../domain/BirthDate";
 import { EmailAddress } from "../../domain/EmailAddress";
 import { Employee } from "../../domain/Employee";
 import { Name } from "../../domain/Name";
 import { EmailService } from "../../services/EmailService";
-import { sendBirthdayEmail } from "../../utils";
+import { generateEmailBody, sendBirthdayEmail } from "../../utils";
 
 describe("sendBirthdayEmail", () => {
   let mockEmailService: jest.Mocked<EmailService>;
@@ -14,7 +15,7 @@ describe("sendBirthdayEmail", () => {
     };
   });
 
-  it("should send an email if the employee's email is valid", () => {
+  it("should send an email with correct subject and body if the employee's email is valid", () => {
     const employee = new Employee(
       new Name("Doe", "John"),
       new BirthDate("1990-03-17"),
@@ -25,8 +26,8 @@ describe("sendBirthdayEmail", () => {
 
     expect(mockEmailService.send).toHaveBeenCalledWith(
       employee.getEmailAddress(),
-      "Happy Birthday!",
-      "Happy birthday, dear John!"
+      BIRTHDAY_EMAIL_SUBJECT,
+      generateEmailBody(employee.getFirstName())
     );
   });
 
