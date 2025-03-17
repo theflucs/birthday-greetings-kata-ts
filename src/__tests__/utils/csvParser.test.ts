@@ -1,5 +1,5 @@
-import { Birthdate } from "../../Birthdate";
-import { Employee } from "../../Employee";
+import { Birthdate } from "../../domain/Birthdate";
+import { Employee } from "../../domain/Employee";
 import { parseCsvToEmployees } from "../../utils";
 
 describe("parseCsvToEmployees", () => {

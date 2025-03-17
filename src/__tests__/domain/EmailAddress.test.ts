@@ -1,4 +1,4 @@
-import { EmailAddress } from "../EmailAddress";
+import { EmailAddress } from "../../domain/EmailAddress";
 
 describe("EmailAddress", () => {
   it("should store and return the correct email address", () => {

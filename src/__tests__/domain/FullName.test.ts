@@ -1,4 +1,4 @@
-import { FullName } from "../FullName";
+import { FullName } from "../../domain/FullName";
 
 describe("FullName - getFirstName", () => {
   it("should return first name", () => {

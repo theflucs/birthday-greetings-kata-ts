@@ -1,7 +1,7 @@
-import { Employee } from "./Employee";
-import { Birthdate } from "./Birthdate";
-import { EmailAddress } from "./EmailAddress";
-import { FullName } from "./FullName";
+import { Employee } from "./domain/Employee";
+import { Birthdate } from "./domain/Birthdate";
+import { EmailAddress } from "./domain/EmailAddress";
+import { FullName } from "./domain/FullName";
 
 export function parseCsvToEmployees(csvData: string): Employee[] {
   return csvData

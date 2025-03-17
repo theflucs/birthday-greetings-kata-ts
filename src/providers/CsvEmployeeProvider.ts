@@ -1,5 +1,5 @@
 import { EmployeeProvider } from "./EmployeeProvider";
-import { parseCsvToEmployees } from "./utils";
+import { parseCsvToEmployees } from "../utils";
 
 export class CsvEmployeeProvider implements EmployeeProvider {
   constructor(
