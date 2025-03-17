@@ -1,14 +1,18 @@
-export class FullName {
+export class Name {
   private readonly firstName: string;
   private readonly lastName: string;
 
-  constructor(firstName: string, lastName: string) {
-    this.firstName = this.clean(firstName);
+  constructor(lastName: string, firstName: string) {
     this.lastName = this.clean(lastName);
+    this.firstName = this.clean(firstName);
   }
 
   private clean(name: string): string {
     return name.trim();
+  }
+
+  getFullName(): string {
+    return `${this.lastName} ${this.firstName}`;
   }
 
   getFirstName(): string {
