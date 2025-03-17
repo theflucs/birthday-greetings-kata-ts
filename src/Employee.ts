@@ -1,16 +1,16 @@
 import { Birthdate } from "./Birthdate";
 import { EmailAddress } from "./EmailAddress";
+import { FullName } from "./FullName";
 
 export class Employee {
   constructor(
-    private readonly firstName: string,
-    private readonly lastName: string,
+    private readonly fullName: FullName,
     private readonly birthDate: Birthdate,
     private readonly email: EmailAddress
   ) {}
 
-  getName(): string {
-    return this.firstName;
+  getFirstName(): string {
+    return this.fullName.getFirstName();
   }
 
   getEmailAddress(): EmailAddress {

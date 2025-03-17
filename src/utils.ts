@@ -1,6 +1,7 @@
 import { Employee } from "./Employee";
 import { Birthdate } from "./Birthdate";
 import { EmailAddress } from "./EmailAddress";
+import { FullName } from "./FullName";
 
 export function parseCsvToEmployees(csvData: string): Employee[] {
   return csvData
@@ -10,8 +11,7 @@ export function parseCsvToEmployees(csvData: string): Employee[] {
     .map((line) => {
       const [lastName, firstName, birthDate, email] = line.split(", ");
       return new Employee(
-        firstName,
-        lastName,
+        new FullName(firstName, lastName),
         new Birthdate(birthDate),
         new EmailAddress(email)
       );

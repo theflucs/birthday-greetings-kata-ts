@@ -13,7 +13,7 @@ Ann, Mary, 1975/09/11, mary.ann@example.com`;
     expect(employees).toHaveLength(2);
 
     expect(employees[0]).toBeInstanceOf(Employee);
-    expect(employees[0].getName()).toBe("John");
+    expect(employees[0].getFirstName()).toBe("John");
     expect(employees[0].getEmailAddress().value()).toBe("john.doe@example.com");
     expect(employees[0].getBirthdate()).toBeInstanceOf(Birthdate);
     expect(employees[0].getBirthdate().isSameDay(new Date(1982, 9, 8))).toBe(
@@ -21,7 +21,7 @@ Ann, Mary, 1975/09/11, mary.ann@example.com`;
     );
 
     expect(employees[1]).toBeInstanceOf(Employee);
-    expect(employees[1].getName()).toBe("Mary");
+    expect(employees[1].getFirstName()).toBe("Mary");
     expect(employees[1].getEmailAddress().value()).toBe("mary.ann@example.com");
     expect(employees[1].getBirthdate()).toBeInstanceOf(Birthdate);
     expect(employees[1].getBirthdate().isSameDay(new Date(1975, 8, 11))).toBe(
