@@ -5,37 +5,45 @@ export class BirthDate {
     this.date = new Date(yyyyMMdd);
   }
 
-  isSameDay(otherDate: BirthDate): boolean {
-    if (this.isFeb29()) {
-      if (!otherDate.isLeapYear() && otherDate.isFeb28()) {
-        return true;
-      }
-    }
-
-    return (
-      this.date.getMonth() === otherDate.date.getMonth() &&
-      this.date.getDate() === otherDate.date.getDate()
-    );
+  isSameDay(other: BirthDate): boolean {
+    return this.matchesSameDay(other) || this.matchesLeapYearBirthday(other);
   }
 
-  private isLeapYear(): boolean {
-    const year = this.date.getFullYear();
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  private matchesSameDay(other: BirthDate): boolean {
+    return this.month() === other.month() && this.day() === other.day();
+  }
+
+  private matchesLeapYearBirthday(other: BirthDate): boolean {
+    return this.isFeb29() && other.isNonLeapYearFeb28();
   }
 
   private isFeb29(): boolean {
-    return this.getMonth() === 1 && this.getDay() === 29;
+    return this.month() === 1 && this.day() === 29;
+  }
+
+  private isNonLeapYearFeb28(): boolean {
+    return !LeapYear.isLeapYear(this.year()) && this.isFeb28();
   }
 
   private isFeb28(): boolean {
-    return this.getMonth() === 1 && this.getDay() === 28;
+    return this.month() === 1 && this.day() === 28;
   }
 
-  getMonth(): number {
+  private year(): number {
+    return this.date.getFullYear();
+  }
+
+  private month(): number {
     return this.date.getMonth();
   }
 
-  getDay(): number {
+  private day(): number {
     return this.date.getDate();
+  }
+}
+
+class LeapYear {
+  static isLeapYear(year: number): boolean {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
 }
