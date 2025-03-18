@@ -25,7 +25,6 @@ describe("BirthDate", () => {
     expect(birthDate.isSameDay(today)).toBe(true);
   });
 
-
   it("should not match Dec 31 with Jan 1", () => {
     const newYearEve = new BirthDate("2023-12-31");
     const newYearDay = new BirthDate("2024-01-01");
@@ -41,6 +40,19 @@ describe("BirthDate", () => {
   it("should not match different years if day and month are different", () => {
     const birthDate = new BirthDate("1995-08-15");
     const today = new BirthDate("2024-07-15");
+    expect(birthDate.isSameDay(today)).toBe(false);
+  });
+
+  it("should match Feb 29 birthdays on Feb 28 in a non-leap year", () => {
+    const birthDate = new BirthDate("2000-02-29");
+    const today = new BirthDate("2023-02-28");
+    expect(birthDate.isSameDay(today)).toBe(true);
+  });
+
+  it("should not match Feb 29 birthdays on Feb 28 in a leap year", () => {
+    const birthDate = new BirthDate("2000-02-29");
+    const today = new BirthDate("2024-02-28");
+
     expect(birthDate.isSameDay(today)).toBe(false);
   });
 });
